@@ -35,10 +35,10 @@ const dividasPagas = computed(() => {
   <DividaTable :rows="dividasPagas">
     <template #filter>
       <tr>
-        <td>
+        <td colspan="1">
           <FSelect :items="items" v-model="filter" />
         </td>
-        <td>
+        <!-- <td>
           <FInput placeholder="Digite..." />
         </td>
         <td>
@@ -47,8 +47,8 @@ const dividasPagas = computed(() => {
 
         <td>
           <FInput placeholder="Digite..." type="date" />
-        </td>
-        <td colspan="2" class="text-right">
+        </td> -->
+        <td colspan="6" class="text-right">
           <FBtn @click="createFormVisibility = true"> Nova Dívida </FBtn>
         </td>
       </tr>

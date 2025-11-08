@@ -8,6 +8,7 @@ import type { CrudCreate } from "@/services/crud";
 import { useDividasStore } from "@/stores/divida";
 import FCheckbox from "../ui/f-checkbox.vue";
 import FDialog from "../ui/f-dialog.vue";
+import { create } from "domain";
 
 const emit = defineEmits<{
   (event: "save", item: Divida): void;
@@ -24,7 +25,10 @@ const form = ref<CrudCreate<Divida>>({
 });
 
 async function save() {
-  const result = await store.save(form.value);
+  const result = await store.save({
+    ...form.value,
+    createdAt: new Date(form.value.createdAt).setUTCHours(3, 0, 0, 0),
+  });
   form.value = {
     pessoa: "",
     nome: "",
@@ -67,10 +71,14 @@ async function save() {
           step="0.01"
           class="mr-2"
         />
-
-        <div class="mb-3 mr-2">
-          <FCheckbox label="Pago" v-model="form.pago"></FCheckbox>
-        </div>
+        <FInput
+          v-model="form.createdAt"
+          label="Data criação"
+          placeholder="Digite..."
+          type="date"
+          class="mr-2"
+        />
+        <FCheckbox label="Pago" v-model="form.pago"></FCheckbox>
       </div>
       <template #footer>
         <FBtn type="submit">Salvar</FBtn>

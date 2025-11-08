@@ -24,7 +24,6 @@ const total = computed(() =>
 );
 const columns = ref<Column[]>([
   { id: "pago", title: "Pago", align: "center", get: () => null },
-  // { id: "id", title: "Id", align: "left", get: (item) => item.id },
   { id: "nome", title: "Titulo", align: "left", get: (item) => item.nome },
   { id: "pessoa", title: "Pessoa", align: "left", get: (item) => item.pessoa },
   {
@@ -72,7 +71,6 @@ async function confirmDelete() {
     </template>
     <template #column-pago="{ row, index, column }">
       <td class="text-center">
-        <!-- {{column}} -->
         <FCheckbox v-model="row.pago"> </FCheckbox>
       </td>
     </template>
